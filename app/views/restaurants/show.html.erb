@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="card text-center">
+    <h1 class="text-success"><%= @restaurant.name %></h1>
+    <h4>Location: <%= @restaurant.address %></h4>
+    <h4>Phone Number: <%= @restaurant.phone_number %></h4>
+    <h4>Cuisine: <%= @restaurant.category %></h4>
+    <br>
+    <h4>Reviews:</h4>
+    <ul class="list d-flex justify-content-center">
+     <div class="list-group col-4">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item mb-3">
+        <small>
+          <% count = 0 %>
+          <% 5.times do %>
+            <% if review.rating > count %>
+              <i class="fas fa-star text-warning"></i>
+            <% else %>
+              <i class="far fa-star"></i>
+            <% end %>
+            <% count += 1 %>
+          <% end %>
+        </small>
+        <p><%= review.content %></p>
+      </li>
+    <% end %>
+  </div>
+    </ul>
+
+  <div class="d-flex justify-content-center">
+      <%= link_to "Add a rating", new_restaurant_review_path(@restaurant), class:"btn btn-primary" %>
+      <%= link_to "Homepage", restaurants_path, class:"btn btn-success ml-3" %>
+  </div>
+
+
+  </div>
+</div>
